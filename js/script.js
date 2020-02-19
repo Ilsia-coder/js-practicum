@@ -1,5 +1,6 @@
 "use strict" ;
-сonst DATA = {
+
+const DATA = {
   whichSite: ['landing', 'multiPage', 'onlineStore'],
   price: [4000, 8000, 26000],
   desktopTemplates: [50, 40, 30],
@@ -9,8 +10,8 @@
   metrikaYandex: [500, 1000, 2000],
   analyticsGoogle: [850, 1350, 3000],
   sendOrder: 500,
-  deadlineDay:
-  deadline
+  deadlineDay: [[2, 7], [3, 10], [7, 14]],
+  deadlinePercent: [20, 17, 15]
 };
 
 
@@ -21,7 +22,8 @@ const startButton = document.querySelector('.start-button'),
           endButton = document.querySelector('.end-button'),
           formCalculate = document.querySelector('.form-calculate'),
           total = document.querySelector('.total'),
-          fastRange = document.querySelector('.fast-range');
+          fastRange = document.querySelector('.fast-range'),
+          totalPriceSum = document.querySelector('.total_price__sum');
 
 
 function showElement(elem) {
@@ -31,16 +33,39 @@ function showElement(elem) {
 function hideElement(elem) {
   elem.style.display = 'none';
 }
+
+function priceCalculation(elem) {
+  let result = 0,
+        index = 0;
+
+
+  if (elem.name === 'whichSite') {
+    for (const item of formCalculate.elements) {
+      if (item.type === 'checkbox') {
+        item.checked = false;
+      }
+    }
+    hideElement(fastRange);
+  }
+
+  for (const item of formCalculate.elements) {
+    if (item.name === 'whichSite' && item.checked) {
+      console.log(item);
+    }
+  }
+
+  totalPriceSum.textContent = result;
+}
+
+8
 function handlerCallBackForm(e) {
   const target = e.target;
   
   if (target.classList.contains('want-faster')) {
-      // if (target.checked) {
-      //   showElement(fastRange);
-      // } else {
-      //   hideElement(fastRange);
-      // }
     target.checked ? showElement(fastRange) : hideElement(fastRange);
+  }
+  if (target.classList.contains('calc-handler')) {
+    priceCalculation(target);
   }
 }
 
