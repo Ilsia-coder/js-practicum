@@ -24,6 +24,7 @@ const startButton = document.querySelector('.start-button'),
           total = document.querySelector('.total'),
           fastRange = document.querySelector('.fast-range'),
           totalPriceSum = document.querySelector('.total_price__sum');
+          
 
 
 function showElement(elem) {
@@ -62,11 +63,13 @@ function priceCalculation(elem) {
       if (key === 'sendOrder') {
         result += DATA[key];
       } else {
-        result =+ DATA.price[index] * DATA[key] / 100;
+        result += DATA.price[index] * DATA[key] / 100;
       }
     } else {
       if (key === 'desktopTemplates') {
         result += DATA.price[index] * DATA.desktopTemplates[index] / 100;
+      } else {
+        result += DATA[key][index];
       }
     }
   });
