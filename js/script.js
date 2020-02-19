@@ -36,7 +36,8 @@ function hideElement(elem) {
 
 function priceCalculation(elem) {
   let result = 0,
-        index = 0;
+        index = 0,
+        options = [];
 
 
   if (elem.name === 'whichSite') {
@@ -50,10 +51,28 @@ function priceCalculation(elem) {
 
   for (const item of formCalculate.elements) {
     if (item.name === 'whichSite' && item.checked) {
-      console.log(item);
+      index = DATA.whichSite.indexOf(item.value);
+    } else if (item.classList.contains('calc-handler') && item.checked) { 
+      options.push(item.value);
     }
+    
   }
+  options.forEach(function(key) {
+    if (typeof (DATA[key]) === 'number') {
+      if (key === 'sendOrder') {
+        result += DATA[key];
+      } else {
+        result =+ DATA.price[index] * DATA[key] / 100;
+      }
+    } else {
+      if (key === 'desktopTemplates') {
+        result += DATA.price[index] * DATA.desktopTemplates[index] / 100;
+      }
+    }
+  });
 
+
+  result += DATA.price[index];
   totalPriceSum.textContent = result;
 }
 
