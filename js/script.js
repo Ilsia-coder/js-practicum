@@ -57,7 +57,7 @@ function priceCalculation(elem) {
   totalPriceSum.textContent = result;
 }
 
-8
+
 function handlerCallBackForm(e) {
   const target = e.target;
   
