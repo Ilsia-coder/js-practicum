@@ -1,4 +1,20 @@
 "use strict" ;
+сonst DATA = {
+  whichSite: ['landing', 'multiPage', 'onlineStore'],
+  price: [4000, 8000, 26000],
+  desktopTemplates: [50, 40, 30],
+  adapt: 20,
+  mobileTemplates: 15,
+  editable: 10,
+  metrikaYandex: [500, 1000, 2000],
+  analyticsGoogle: [850, 1350, 3000],
+  sendOrder: 500,
+  deadlineDay:
+  deadline
+};
+
+
+
 const startButton = document.querySelector('.start-button'),
           firstScreen = document.querySelector('.first-screen'),
           mainForm = document.querySelector('.main-form'),
