@@ -23,7 +23,8 @@ const startButton = document.querySelector('.start-button'),
           formCalculate = document.querySelector('.form-calculate'),
           total = document.querySelector('.total'),
           fastRange = document.querySelector('.fast-range'),
-          totalPriceSum = document.querySelector('.total_price__sum');
+          totalPriceSum = document.querySelector('.total_price__sum'),
+          mobileTemplates = document.querySelector('#mobileTemplates');
           
 
 
@@ -50,6 +51,7 @@ function priceCalculation(elem) {
     hideElement(fastRange);
   }
 
+
   for (const item of formCalculate.elements) {
     if (item.name === 'whichSite' && item.checked) {
       index = DATA.whichSite.indexOf(item.value);
@@ -57,7 +59,13 @@ function priceCalculation(elem) {
       options.push(item.value);
     }
     
+    if (item.value === 'adapt' && item.checked) {
+      mobileTemplates.removeAttribute('disabled');
+    } 
   }
+
+
+
   options.forEach(function(key) {
     if (typeof (DATA[key]) === 'number') {
       if (key === 'sendOrder') {
@@ -72,6 +80,8 @@ function priceCalculation(elem) {
         result += DATA[key][index];
       }
     }
+
+
   });
 
 
