@@ -24,7 +24,8 @@ const startButton = document.querySelector('.start-button'),
           total = document.querySelector('.total'),
           fastRange = document.querySelector('.fast-range'),
           totalPriceSum = document.querySelector('.total_price__sum'),
-          mobileTemplates = document.querySelector('#mobileTemplates');
+          mobileTemplates = document.getElementById('mobileTemplates'),
+          adapt = document.getElementById('adapt');
           
 
 
@@ -45,6 +46,7 @@ function priceCalculation(elem) {
   if (elem.name === 'whichSite') {
     for (const item of formCalculate.elements) {
       if (item.type === 'checkbox') {
+        
         item.checked = false;
       }
     }
@@ -57,11 +59,8 @@ function priceCalculation(elem) {
       index = DATA.whichSite.indexOf(item.value);
     } else if (item.classList.contains('calc-handler') && item.checked) { 
       options.push(item.value);
-    }
-    
-    if (item.value === 'adapt' && item.checked) {
-      mobileTemplates.removeAttribute('disabled');
     } 
+    
   }
 
 
@@ -93,6 +92,12 @@ function priceCalculation(elem) {
 function handlerCallBackForm(e) {
   const target = e.target;
   
+  if ( adapt.checked) {
+    mobileTemplates.disabled =false;
+  } else {
+    mobileTemplates.disabled = true;
+    mobileTemplates.checked = false;
+  }
   if (target.classList.contains('want-faster')) {
     target.checked ? showElement(fastRange) : hideElement(fastRange);
   }
